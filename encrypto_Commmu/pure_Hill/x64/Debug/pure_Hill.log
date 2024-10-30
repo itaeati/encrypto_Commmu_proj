@@ -1,2 +1,2 @@
 ﻿  main.c
-  pure_Hill.vcxproj -> C:\encrypto_Commmu_proj_coWork\encrypto_Commmu_proj\encrypto_Commmu\x64\Debug\pure_Hill.exe
+C:\encrypto_Commmu_proj\encrypto_Commmu\pure_Hill\main.c(13,2): error C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
