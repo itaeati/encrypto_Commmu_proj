@@ -5,6 +5,18 @@
     {
       "AbsoluteMoniker": "D:0:0:{E4FE7119-4D65-4F63-8439-D75927B1176B}|pure_Hill\\pure_Hill.vcxproj|C:\\encrypto_Commmu_proj\\encrypto_Commmu\\pure_Hill\\main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{E4FE7119-4D65-4F63-8439-D75927B1176B}|pure_Hill\\pure_Hill.vcxproj|solutionrelative:pure_Hill\\main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E4FE7119-4D65-4F63-8439-D75927B1176B}|pure_Hill\\pure_Hill.vcxproj|C:\\encrypto_Commmu_proj\\encrypto_Commmu\\pure_Hill\\Librarys.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{E4FE7119-4D65-4F63-8439-D75927B1176B}|pure_Hill\\pure_Hill.vcxproj|solutionrelative:pure_Hill\\Librarys.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E4FE7119-4D65-4F63-8439-D75927B1176B}|pure_Hill\\pure_Hill.vcxproj|C:\\encrypto_Commmu_proj\\encrypto_Commmu\\pure_Hill\\Matrix.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{E4FE7119-4D65-4F63-8439-D75927B1176B}|pure_Hill\\pure_Hill.vcxproj|solutionrelative:pure_Hill\\Matrix.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E4FE7119-4D65-4F63-8439-D75927B1176B}|pure_Hill\\pure_Hill.vcxproj|C:\\encrypto_Commmu_proj\\encrypto_Commmu\\pure_Hill\\Matrix.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{E4FE7119-4D65-4F63-8439-D75927B1176B}|pure_Hill\\pure_Hill.vcxproj|solutionrelative:pure_Hill\\Matrix.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,8 +26,48 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Matrix.h",
+              "DocumentMoniker": "C:\\encrypto_Commmu_proj\\encrypto_Commmu\\pure_Hill\\Matrix.h",
+              "RelativeDocumentMoniker": "pure_Hill\\Matrix.h",
+              "ToolTip": "C:\\encrypto_Commmu_proj\\encrypto_Commmu\\pure_Hill\\Matrix.h",
+              "RelativeToolTip": "pure_Hill\\Matrix.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-11-02T07:02:19.756Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "main.c",
+              "DocumentMoniker": "C:\\encrypto_Commmu_proj\\encrypto_Commmu\\pure_Hill\\main.c",
+              "RelativeDocumentMoniker": "pure_Hill\\main.c",
+              "ToolTip": "C:\\encrypto_Commmu_proj\\encrypto_Commmu\\pure_Hill\\main.c",
+              "RelativeToolTip": "pure_Hill\\main.c",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2024-10-30T13:46:16.534Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Matrix.c",
+              "DocumentMoniker": "C:\\encrypto_Commmu_proj\\encrypto_Commmu\\pure_Hill\\Matrix.c",
+              "RelativeDocumentMoniker": "pure_Hill\\Matrix.c",
+              "ToolTip": "C:\\encrypto_Commmu_proj\\encrypto_Commmu\\pure_Hill\\Matrix.c",
+              "RelativeToolTip": "pure_Hill\\Matrix.c",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAA4AAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2024-11-02T07:56:12.734Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
@@ -30,15 +82,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "main.c",
-              "DocumentMoniker": "C:\\encrypto_Commmu_proj\\encrypto_Commmu\\pure_Hill\\main.c",
-              "RelativeDocumentMoniker": "pure_Hill\\main.c",
-              "ToolTip": "C:\\encrypto_Commmu_proj\\encrypto_Commmu\\pure_Hill\\main.c",
-              "RelativeToolTip": "pure_Hill\\main.c",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAADgAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2024-10-30T13:46:16.534Z",
+              "DocumentIndex": 1,
+              "Title": "Librarys.h",
+              "DocumentMoniker": "C:\\encrypto_Commmu_proj\\encrypto_Commmu\\pure_Hill\\Librarys.h",
+              "RelativeDocumentMoniker": "pure_Hill\\Librarys.h",
+              "ToolTip": "C:\\encrypto_Commmu_proj\\encrypto_Commmu\\pure_Hill\\Librarys.h",
+              "RelativeToolTip": "pure_Hill\\Librarys.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAqAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-11-02T07:20:03.388Z",
               "EditorCaption": ""
             }
           ]
