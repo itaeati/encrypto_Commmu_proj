@@ -3,6 +3,7 @@
 char strArray[STR_SIZE];	// 평문을 담는 배열
 int resultArray[STR_SIZE];	// 평문 * key행렬 결과를 담는 배열
 int maxIdx = 0;
+int strArray_length[STR_SIZE]; // 평문을 대응하는 숫자로 변환한 값을 저장하는 배열
 
 int* make_keyArray(int* keySize) // key 크기를 입력받고, key 행렬을 만드는 함수
 {
@@ -39,8 +40,13 @@ make_keyArray_exit:
 
 void keyElement_input(int* keyArray, int keySize) // key 행렬에 값을 써주는 함수
 {
-	// 류현수 구현
+	for (int i = 0; i < keySize * keySize; i++)
+	{
+		printf("키를 입력하세요 [%d][%d] : ", i / keySize, i % keySize);
+		scanf("%d", &keyArray[i]);
+			// 류현수 구현
 
+	}
 	return;
 }
 
@@ -63,21 +69,34 @@ bool cal_Determinant(int* keyArray, int keySize) // key 행렬의 행렬식이 0인지를 
 
 }
 
-void input_strArray(int* strSize) // 평문의 사이즈를 입력받고, 평문배열을 입력받는 함수
+void input_strArray(int* strSize)
 {
 	// 류현수 구현
 
-	/*--------------------------*/
+	/*--------------------------*/ ////////// 평문 길이를 받아야 하는데 
 	// 1. 평문의 길이를 받음
 	/*--------------------------*/
-
 	/*--------------------------*/
 	// 2. string 입력받기
 	/*--------------------------*/
-
-	/*--------------------------*/
+	/*--------------------------*/ ////////// int 배열이 없음.
 	// 3. int 배열에 다시 넣기
 	/*--------------------------*/
+
+	printf("평문을 입력하세요 : ");
+	scanf("%s", strArray); //평문을 strArray배열에 문자열로 입력을 받는다.
+
+	if (strArray == NULL)
+	{
+
+	}
+
+
+	for (int i = 0; i < strlen(strArray); ++i)
+	{
+		strArray_length[i] = (int)strArray[i] - 'A';
+	}
+
 
 	return;
 }
