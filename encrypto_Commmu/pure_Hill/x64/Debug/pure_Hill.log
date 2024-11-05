@@ -1,2 +1,7 @@
-﻿  main.c
-C:\encrypto_Commmu_proj\encrypto_Commmu\pure_Hill\main.c(13,2): error C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+﻿  Matrix.c
+C:\encrypto_Commmu_proj_coWork\encrypto_Commmu_proj\encrypto_Commmu\pure_Hill\Matrix.c(63,3): warning C4033: 'cal_Determinant'은(는) 값을 반환해야 합니다.
+  main.c
+  코드를 생성하고 있습니다...
+C:\encrypto_Commmu_proj_coWork\encrypto_Commmu_proj\encrypto_Commmu\pure_Hill\Matrix.c(70,1): warning C4716: 'cal_Determinant': 값을 반환해야 합니다.
+C:\encrypto_Commmu_proj_coWork\encrypto_Commmu_proj\encrypto_Commmu\pure_Hill\Matrix.c(108,1): warning C4716: 'mul_Matrix': 값을 반환해야 합니다.
+  pure_Hill.vcxproj -> C:\encrypto_Commmu_proj_coWork\encrypto_Commmu_proj\encrypto_Commmu\x64\Debug\pure_Hill.exe
