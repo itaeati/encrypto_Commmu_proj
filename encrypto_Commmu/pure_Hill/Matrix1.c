@@ -1,21 +1,14 @@
 #include "Matrix.h"
 
 char strArray[STR_SIZE];		// 평문을 담는 배열
-int resultArray[STR_SIZE];		// 평문 * key행렬 결과를 담는 배열
+int deliverArray[STR_SIZE];		// 평문 * key행렬 결과를 담는 배열
 int maxIdx = 0;					// 평문의 크기
 int numArray[STR_SIZE];			// 평문을 대응하는 숫자로 변환한 값을 저장하는 배열
 int detNum = 1;					// 행렬식값
+int peddedSize = 0;				// 패딩사이즈
 
 bool deleteKey_flag = false;	// 혹시모르는 검사
 int errNum = 0;					// 에러체크
-
-/*----------------------------
-* 0 : 문제없음
-* 1 : key 행렬 할당 실패
-* 2 : 소행렬식의 배열 할당실패
-* 3 : 소행렬식 할당 실패
-* 4 : 사용자가 직접 종료
-------------------------------*/
 
 void copyIdx(int* destArr, int* srcArr, int srcStd_idx, int srcSize);
 int cal_Determinant(int* keyArray, int keySize);
@@ -140,6 +133,7 @@ cal_Determinant_exit2:
 	{
 		for (int i = 0; i < tempArr_size; i++)
 			if (tempArr[i] != NULL) free(tempArr[i]);
+			else break; // 할당은 순차적으로 되기 때문
 	}
 
 	free(tempArr);
