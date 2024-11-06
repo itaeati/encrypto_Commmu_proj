@@ -128,10 +128,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.c" />
-    <ClCompile Include="Matrix.c" />
+    <ClCompile Include="Matrix1.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Librarys.h" />
+    <ClInclude Include="main.h" />
     <ClInclude Include="Matrix.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
