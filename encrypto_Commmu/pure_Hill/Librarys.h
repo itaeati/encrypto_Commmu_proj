@@ -9,6 +9,7 @@
 #include <math.h>
 
 #define STR_SIZE 500
+#define ALPABET_SIZE 27 // + @
 
 //extern char strArray[STR_SIZE];		// 평문을 담는 배열
 //extern int resultArray[STR_SIZE];		// 평문 * key행렬 결과를 담는 배열
