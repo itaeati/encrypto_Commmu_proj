@@ -3,7 +3,7 @@
 char strArray[STR_SIZE];	// 평문을 담는 배열
 int resultArray[STR_SIZE];	// 평문 * key행렬 결과를 담는 배열
 int maxIdx = 0;
-int num_strArray[STR_SIZE]; // 평문을 대응하는 숫자로 변환한 값을 저장하는 배열
+int numstrArray[STR_SIZE]; // 평문을 대응하는 숫자로 변환한 값을 저장하는 배열
 
 int* make_keyArray(int* keySize) // key 크기를 입력받고, key 행렬을 만드는 함수
 {
@@ -121,40 +121,43 @@ void input_strArray(void)
 	/*--------------------------*/
 	// 3. int 배열에 다시 넣기
 	/*--------------------------*/
-init:
+	bool loopFlag = true;
 
-	printf("평문을 입력하세요 (qqq입력시 종료) : ");
-
-	fgets(strArray, STR_SIZE, stdin); //평문을 strArray배열에 문자열로 입력을 받는다. (499개의 문자 + null)
-
-
-	if (strcmp(strArray, "qqq") || strcmp(strArray, "QQQ"))
+	do
 	{
-		printf("종료되었습니다.");
+		printf("평문을 입력하세요 (qqq입력시 종료) : ");
 
-		return;
-	}
+		fgets(strArray, STR_SIZE, stdin); // 평문을 strArray 배열에 문자열로 입력을 받는다. (499개의 문자 + null)
 
-	for (int i = 0; i < strlen(strArray); ++i)
-	{
-		if (strArray[i] <= 'Z')
-			num_strArray[i] = (int)strArray[i] - 'A';
 
-		else if (strArray[i] >= 'a' || strArray[i] <= 'z')
+
+		if (strcmp(strArray, "qqq") || strcmp(strArray, "QQQ"))
 		{
-			num_strArray[i] = (int)strArray[i] - ('a' - 'A');
+			printf("종료되었습니다.");
+
+			break;
 		}
 
-		else
+		for (int i = 0; i < strlen(strArray); ++i) 
 		{
-			printf("invaild charater : %c(%d)\n", strArray[i], i);
-			printf("try input again\n");
+			if (strArray[i] <= 'Z')
+				numstrArray[i] = (int)strArray[i] - 'A';
 
-			memset(strArray,0,STR_SIZE);
-			
-			goto init;
+			else if (strArray[i] >= 'a' || strArray[i] <= 'z')
+			{
+				numstrArray[i] = (int)strArray[i] - ('a' - 'A');
+			}
+
+			else
+			{
+				printf("invaild charater : %c(%d)\n", strArray[i], i);
+				printf("try input again\n");
+
+				memset(strArray, 0, STR_SIZE);
+
+			}
 		}
-	}
+	}while()
 
 }
 
