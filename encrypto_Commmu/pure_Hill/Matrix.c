@@ -3,7 +3,7 @@
 char strArray[STR_SIZE];	// 평문을 담는 배열
 int resultArray[STR_SIZE];	// 평문 * key행렬 결과를 담는 배열
 int maxIdx = 0;
-int strArray_length[STR_SIZE]; // 평문을 대응하는 숫자로 변환한 값을 저장하는 배열
+int num_strArray[STR_SIZE]; // 평문을 대응하는 숫자로 변환한 값을 저장하는 배열
 
 int* make_keyArray(int* keySize) // key 크기를 입력받고, key 행렬을 만드는 함수
 {
@@ -13,10 +13,12 @@ int* make_keyArray(int* keySize) // key 크기를 입력받고, key 행렬을 만드는 함수
 
 	int* keyArray = NULL;
 	printf("키의 행의 크기를 입력하세요:");
+
 	scanf("%d", keySize);
+
 	printf("\n");
 
-	if (!(keySize > 0))
+	if (!(*keySize > 0))
 	{
 		goto make_keyArray_exit;
 	}
@@ -32,7 +34,7 @@ int* make_keyArray(int* keySize) // key 크기를 입력받고, key 행렬을 만드는 함수
 		goto make_keyArray_exit;
 	}
 
-	// 혹시몰라 더 써질지?
+	keyElement_input(keyArray, *keySize);
 
 make_keyArray_exit:
 	return keyArray;
@@ -106,36 +108,54 @@ void copyIdx(int* destArr, int* srcArr, int srcStd_idx, int srcSize)
 	}
 }
 
-void input_strArray(int* strSize)
+void input_strArray(void)
 {
 	// 류현수 구현
 
-	/*--------------------------*/ ////////// 평문 길이를 받아야 하는데 
+	/*--------------------------*/
 	// 1. 평문의 길이를 받음
 	/*--------------------------*/
 	/*--------------------------*/
 	// 2. string 입력받기
 	/*--------------------------*/
-	/*--------------------------*/ ////////// int 배열이 없음.
+	/*--------------------------*/
 	// 3. int 배열에 다시 넣기
 	/*--------------------------*/
+init:
 
-	printf("평문을 입력하세요 : ");
-	scanf("%s", strArray); //평문을 strArray배열에 문자열로 입력을 받는다.
+	printf("평문을 입력하세요 (qqq입력시 종료) : ");
 
-	if (strArray == NULL)
+	fgets(strArray, STR_SIZE, stdin); //평문을 strArray배열에 문자열로 입력을 받는다. (499개의 문자 + null)
+
+
+	if (strcmp(strArray, "qqq") || strcmp(strArray, "QQQ"))
 	{
+		printf("종료되었습니다.");
 
+		return;
 	}
-
 
 	for (int i = 0; i < strlen(strArray); ++i)
 	{
-		strArray_length[i] = (int)strArray[i] - 'A';
+		if (strArray[i] <= 'Z')
+			num_strArray[i] = (int)strArray[i] - 'A';
+
+		else if (strArray[i] >= 'a' || strArray[i] <= 'z')
+		{
+			num_strArray[i] = (int)strArray[i] - ('a' - 'A');
+		}
+
+		else
+		{
+			printf("invaild charater : %c(%d)\n", strArray[i], i);
+			printf("try input again\n");
+
+			memset(strArray,0,STR_SIZE);
+			
+			goto init;
+		}
 	}
 
-
-	return;
 }
 
 bool mul_Matrix(int* keyArray, char* strArray) // 둘의 행렬곱만 해주는 함수
