@@ -1,5 +1,5 @@
 #include "Librarys.h" // 명시를 위해서
-#include "main.h"
+#include "globalVar.h"
 #include "Matrix.h"
 
 void main(void)
@@ -39,10 +39,15 @@ void main(void)
 		/*---------------------------*/
 		// 5. 정리
 		/*---------------------------*/
+
+		initailize_Var();
+		detNum = 1;
+		maxIdx = 0;
+		peddedSize = 0;
+		deleteKey_flag = false;
+
 		if (deleteKey_flag)
-		{
 			free(keyArr);
-		}
 
 
 	}

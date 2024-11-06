@@ -21,6 +21,9 @@
     <ClCompile Include="Matrix1.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Matrix2.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Matrix.h">
@@ -29,7 +32,7 @@
     <ClInclude Include="Librarys.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="main.h">
+    <ClInclude Include="globalVar.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
