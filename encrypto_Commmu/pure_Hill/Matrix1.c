@@ -2,7 +2,7 @@
 
 char strArray[STR_SIZE];		// 평문을 담는 배열
 int resultArray[STR_SIZE];		// 평문 * key행렬 결과를 담는 배열
-int maxIdx = 0;
+int maxIdx = 0;					// 평문의 크기
 int numArray[STR_SIZE];			// 평문을 대응하는 숫자로 변환한 값을 저장하는 배열
 int detNum = 1;					// 행렬식값
 
@@ -205,35 +205,75 @@ void input_strArray(void)
 			{
 				numArray[i] = (int)strArray[i] - 'A';
 				loopFlag = false;
+				maxIdx++;
 			}
 			else if ('a' <= strArray[i] || strArray[i] <= 'z')
 			{
 				numArray[i] = (int)strArray[i] - ('a' - 'A');
 				loopFlag = false;
+				maxIdx++;
 			}
 			else
 			{
 				printf("invaild charater : %c(%d)\n", strArray[i], i);
 				printf("try input again\n");
 
+				maxIdx = 0;
 				loopFlag = true;
 				break;
 			}
 		}
 	} while (loopFlag);
+
+	//이 다음에 패딩하는 것을 함수로 구현
+
+	return;
 }
 
-void mul_Matrix(int* keyArray, int keySize,char* strArray) // 둘의 행렬곱만 해주는 함수
+void mul_Matrix(int* keyArray, int keySize, int* numArray) // 둘의 행렬곱만 해주는 함수
 {
+
+	int sum = 0;
+	int padTime = keySize - (maxIdx % keySize);
+	int quotient = 0;
+
 	/*------------------------*/
 	// 1. 문자패딩
 	/*------------------------*/
+	if (maxIdx % keySize != 0) //strArray가 key행렬의 행의 길이와 같지 않다면 시행
+	{
+		for (int i = 0; i < padTime; i++) //strArray가 key행렬의 행의 길이와 같지 않다면 맞을 때까지 시행
+		{
+			numArray[maxIdx + i] = 26; // 추가되는 값은 27번째 문자의 값을 넣는다. (27번째 문자는 '@'에 대응한다.)
+		}
+	}
 
 	/*------------------------*/
 	// 2. 평문자르기 -> 몫구하기
 	/*------------------------*/
 
+	quotient = strlen(numArray) / keySize;
+
 	/*------------------------*/
 	// 3. 몫만큼 반복해서 행렬곱 -> 결과저장
 	/*------------------------*/
+
+	for (int i = 0; i < quotient; i++) // key행렬과 key의 행렬의 행 개수만큼의 평문 행렬
+	{
+		for (int j = 0; j < keySize; j++) // 행의 인덱스
+
+		{
+			for (int k = 0; k < keySize; k++) // 열의 인덱스
+
+			{
+				sum += keyArray[j * keySize + k] * numArray[i * keySize + k]; //keyArray와 strArray의 행렬곱을 시행한다.
+			}
+
+			resultArray[i * keySize + j] = sum; // 결과 행렬에 행렬 곱의 결과들을 넣는다.
+		}
+	}
+
+
+
+
 }

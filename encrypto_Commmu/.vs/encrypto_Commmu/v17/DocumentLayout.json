@@ -1,0 +1,105 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\encrypto_Commmu_proj_coWork\\encrypto_Commmu_proj\\encrypto_Commmu\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E4FE7119-4D65-4F63-8439-D75927B1176B}|pure_Hill\\pure_Hill.vcxproj|C:\\encrypto_Commmu_proj_coWork\\encrypto_Commmu_proj\\encrypto_Commmu\\pure_Hill\\Matrix1.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{E4FE7119-4D65-4F63-8439-D75927B1176B}|pure_Hill\\pure_Hill.vcxproj|solutionrelative:pure_Hill\\Matrix1.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E4FE7119-4D65-4F63-8439-D75927B1176B}|pure_Hill\\pure_Hill.vcxproj|C:\\encrypto_Commmu_proj_coWork\\encrypto_Commmu_proj\\encrypto_Commmu\\pure_Hill\\main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{E4FE7119-4D65-4F63-8439-D75927B1176B}|pure_Hill\\pure_Hill.vcxproj|solutionrelative:pure_Hill\\main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E4FE7119-4D65-4F63-8439-D75927B1176B}|pure_Hill\\pure_Hill.vcxproj|C:\\encrypto_Commmu_proj_coWork\\encrypto_Commmu_proj\\encrypto_Commmu\\pure_Hill\\Matrix.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{E4FE7119-4D65-4F63-8439-D75927B1176B}|pure_Hill\\pure_Hill.vcxproj|solutionrelative:pure_Hill\\Matrix.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E4FE7119-4D65-4F63-8439-D75927B1176B}|pure_Hill\\pure_Hill.vcxproj|C:\\encrypto_Commmu_proj_coWork\\encrypto_Commmu_proj\\encrypto_Commmu\\pure_Hill\\main.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{E4FE7119-4D65-4F63-8439-D75927B1176B}|pure_Hill\\pure_Hill.vcxproj|solutionrelative:pure_Hill\\main.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E4FE7119-4D65-4F63-8439-D75927B1176B}|pure_Hill\\pure_Hill.vcxproj|C:\\encrypto_Commmu_proj_coWork\\encrypto_Commmu_proj\\encrypto_Commmu\\pure_Hill\\Librarys.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{E4FE7119-4D65-4F63-8439-D75927B1176B}|pure_Hill\\pure_Hill.vcxproj|solutionrelative:pure_Hill\\Librarys.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Matrix.h",
+              "DocumentMoniker": "C:\\encrypto_Commmu_proj_coWork\\encrypto_Commmu_proj\\encrypto_Commmu\\pure_Hill\\Matrix.h",
+              "RelativeDocumentMoniker": "pure_Hill\\Matrix.h",
+              "ToolTip": "C:\\encrypto_Commmu_proj_coWork\\encrypto_Commmu_proj\\encrypto_Commmu\\pure_Hill\\Matrix.h",
+              "RelativeToolTip": "pure_Hill\\Matrix.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-11-06T13:25:28.551Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "main.h",
+              "DocumentMoniker": "C:\\encrypto_Commmu_proj_coWork\\encrypto_Commmu_proj\\encrypto_Commmu\\pure_Hill\\main.h",
+              "RelativeDocumentMoniker": "pure_Hill\\main.h",
+              "ToolTip": "C:\\encrypto_Commmu_proj_coWork\\encrypto_Commmu_proj\\encrypto_Commmu\\pure_Hill\\main.h",
+              "RelativeToolTip": "pure_Hill\\main.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-11-06T13:25:24.162Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Librarys.h",
+              "DocumentMoniker": "C:\\encrypto_Commmu_proj_coWork\\encrypto_Commmu_proj\\encrypto_Commmu\\pure_Hill\\Librarys.h",
+              "RelativeDocumentMoniker": "pure_Hill\\Librarys.h",
+              "ToolTip": "C:\\encrypto_Commmu_proj_coWork\\encrypto_Commmu_proj\\encrypto_Commmu\\pure_Hill\\Librarys.h",
+              "RelativeToolTip": "pure_Hill\\Librarys.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-11-06T13:25:21.954Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Matrix1.c",
+              "DocumentMoniker": "C:\\encrypto_Commmu_proj_coWork\\encrypto_Commmu_proj\\encrypto_Commmu\\pure_Hill\\Matrix1.c",
+              "RelativeDocumentMoniker": "pure_Hill\\Matrix1.c",
+              "ToolTip": "C:\\encrypto_Commmu_proj_coWork\\encrypto_Commmu_proj\\encrypto_Commmu\\pure_Hill\\Matrix1.c",
+              "RelativeToolTip": "pure_Hill\\Matrix1.c",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2024-11-06T13:25:17.368Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "main.c",
+              "DocumentMoniker": "C:\\encrypto_Commmu_proj_coWork\\encrypto_Commmu_proj\\encrypto_Commmu\\pure_Hill\\main.c",
+              "RelativeDocumentMoniker": "pure_Hill\\main.c",
+              "ToolTip": "C:\\encrypto_Commmu_proj_coWork\\encrypto_Commmu_proj\\encrypto_Commmu\\pure_Hill\\main.c",
+              "RelativeToolTip": "pure_Hill\\main.c",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2024-11-06T13:25:00.718Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
