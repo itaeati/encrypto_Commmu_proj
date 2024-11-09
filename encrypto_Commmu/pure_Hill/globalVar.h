@@ -5,9 +5,10 @@ extern int maxIdx;
 extern int detNum;
 extern int peddedSize;
 
-extern int numArray[STR_SIZE];
-extern char strArray[STR_SIZE];
+extern int numMatrix[STR_SIZE];
+extern char input_strArray[STR_SIZE];
 extern char result_strArray[STR_SIZE];
+extern int deliverMatrix[STR_SIZE];
 
 extern int errNum;
 

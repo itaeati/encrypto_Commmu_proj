@@ -2,6 +2,6 @@
 
 #include "Librarys.h"
 
-int* make_keyArray(int* key_size);
-void input_strArray(void); 
-void mul_Matrix(int* keyArray, int keySize, char* strArray);
+int* make_keyMatrix(int* keyMatrix_sideSize);
+void input_to_strArray(void);
+void mul_Matrix(int* keyMatrix, int keyMatrix_sideSize, char* strArray);
