@@ -40,7 +40,7 @@ void main(void)
 		// 5. Á¤¸®
 		/*---------------------------*/
 
-		initailize_Var();
+		//initailize_Var();
 		detNum = 1;
 		maxIdx = 0;
 		peddedSize = 0;

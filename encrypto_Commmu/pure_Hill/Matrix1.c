@@ -164,6 +164,7 @@ void copyIdx(int* destArr, int* srcArr, int srcStd_idx, int srcSize)
 
 void input_strArray(void)
 {
+	int padTime = strlen(strArray) - (maxIdx % strlen(strArray)); // keySize 배수에서 얼마만큼 차이인지를 저장하는 변수
 	// 류현수 구현
 	bool loopFlag = true;
 
@@ -217,6 +218,13 @@ void input_strArray(void)
 				break;
 			}
 		}
+		if (maxIdx % strlen(strArray) != 0) //strArray가 key행렬의 행의 길이와 같지 않다면 시행
+		{
+			for (int i = 0; i < padTime; i++) //strArray가 key행렬의 행의 길이와 같지 않다면 맞을 때까지 시행
+			{
+				numArray[maxIdx + i] = '@'; // 추가되는 값은 27번째 문자의 값을 넣는다. (27번째 문자는 '@'에 대응한다.)
+			}
+		}
 	} while (loopFlag);
 
 	//이 다음에 패딩하는 것을 함수로 구현
@@ -228,19 +236,12 @@ void mul_Matrix(int* keyArray, int keySize, int* numArray) // 둘의 행렬곱만 해주
 {
 
 	int sum = 0;
-	int padTime = keySize - (maxIdx % keySize);
 	int quotient = 0;
 
 	/*------------------------*/
 	// 1. 문자패딩
 	/*------------------------*/
-	if (maxIdx % keySize != 0) //strArray가 key행렬의 행의 길이와 같지 않다면 시행
-	{
-		for (int i = 0; i < padTime; i++) //strArray가 key행렬의 행의 길이와 같지 않다면 맞을 때까지 시행
-		{
-			numArray[maxIdx + i] = 26; // 추가되는 값은 27번째 문자의 값을 넣는다. (27번째 문자는 '@'에 대응한다.)
-		}
-	}
+	
 
 	/*------------------------*/
 	// 2. 평문자르기 -> 몫구하기
@@ -263,7 +264,7 @@ void mul_Matrix(int* keyArray, int keySize, int* numArray) // 둘의 행렬곱만 해주
 				sum += keyArray[j * keySize + k] * numArray[i * keySize + k]; //keyArray와 strArray의 행렬곱을 시행한다.
 			}
 
-			resultArray[i * keySize + j] = sum; // 결과 행렬에 행렬 곱의 결과들을 넣는다.
+			deliverArray[i * keySize + j] = sum; // 결과 행렬에 행렬 곱의 결과들을 넣는다.
 		}
 	}
 
