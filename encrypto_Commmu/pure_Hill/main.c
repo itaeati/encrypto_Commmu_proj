@@ -13,7 +13,7 @@ void main(void)
 		// 1. key 행렬 만들기
 		/*---------------------------*/
 		
-		keyArr = make_keyArray(&key_size);
+		keyArr = make_keyMatrix(&key_size);
 		if (keyArr == NULL)
 		{
 			break;
@@ -23,7 +23,7 @@ void main(void)
 		// 2. 평문입력
 		/*---------------------------*/
 
-		input_strArray();
+		input_to_strArray();
 
 		/*---------------------------*/
 		// 3. 암호화과정
@@ -40,11 +40,8 @@ void main(void)
 		// 5. 정리
 		/*---------------------------*/
 
-		//initailize_Var();
-		detNum = 1;
-		maxIdx = 0;
-		peddedSize = 0;
-		deleteKey_flag = false;
+
+		cleanUp_func();
 
 		if (deleteKey_flag)
 			free(keyArr);
@@ -59,4 +56,16 @@ void main(void)
 	do {} while (getch() == '\n');
 	
 	return;
+}
+
+void cleanUp_func(void)
+{
+	detNum = 1;
+	maxIdx = 0;
+	peddedSize = 0;
+	deleteKey_flag = false;
+
+	memset(input_strArray, 0, STR_SIZE * sizeof(char));
+	memset(deliverMatrix, 0, STR_SIZE * sizeof(int));
+	memset(numMatrix, 0, STR_SIZE * sizeof(int));
 }
