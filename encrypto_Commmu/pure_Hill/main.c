@@ -1,6 +1,7 @@
 #include "Librarys.h" // 명시를 위해서
 #include "globalVar.h"
 #include "Matrix.h"
+#include "Utils.h"
 
 void main(void)
 {
@@ -33,8 +34,8 @@ void main(void)
 		// 4. 복호화과정
 		/*---------------------------*/
 
-		// system("clear"); // 다 완성했을 때
-		// printf("당신의 평문은 [%s] 입니다!\n");
+		system("clear"); // 다 완성했을 때
+		printf("당신의 평문은 [%s] 입니다!\n",result_strArray);
 
 		/*---------------------------*/
 		// 5. 정리
@@ -43,7 +44,8 @@ void main(void)
 
 		cleanUp_func();
 
-		if (deleteKey_flag)
+		
+		if (g_deleteKey_flag)
 			free(keyArr);
 
 
@@ -53,19 +55,7 @@ void main(void)
 		printf("errCode : %d\n", errNum);
 	
 	printf("엔터를 입력하세요!");
-	do {} while (getch() == '\n');
+	do {} while (getchar() == '\n');
 	
 	return;
-}
-
-void cleanUp_func(void)
-{
-	detNum = 1;
-	maxIdx = 0;
-	peddedSize = 0;
-	deleteKey_flag = false;
-
-	memset(input_strArray, 0, STR_SIZE * sizeof(char));
-	memset(deliverMatrix, 0, STR_SIZE * sizeof(int));
-	memset(numMatrix, 0, STR_SIZE * sizeof(int));
 }

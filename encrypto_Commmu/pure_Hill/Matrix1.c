@@ -2,85 +2,17 @@
 
 char input_strArray[STR_SIZE];		// 평문을 담는 배열
 int deliverMatrix[STR_SIZE];	// 평문 * key행렬 결과를 담는 배열
-int maxIdx = 0;					// 평문의 크기
+int g_maxIdx = 0;					// 평문의 크기
 int numMatrix[STR_SIZE];			// 평문을 대응하는 숫자로 변환한 값을 저장하는 배열
-int detNum = 1;					// 행렬식값
-int peddedSize = 0;				// 패딩사이즈
+int g_detNum = 1;					// 행렬식값
+int g_peddedSize = 0;				// 패딩사이즈
 
-bool deleteKey_flag = false;	// 혹시모르는 검사
+bool g_deleteKey_flag = false;	// 혹시모르는 검사
 int errNum = 0;					// 에러체크
 
 void copyIdx(int* destMatrix, int* srcMatrix, int srcStd_idx, int srcMatrix_sideSize);
 int cal_Determinant(int* keyMatrix, int keyMatrix_sideSize);
 void keyElement_input(int* keyMatrix, int keyMatrix_sideSize);
-
-int* make_keyMatrix(int* keyMatrix_sideSize) // key 크기를 입력받고, key 행렬을 만드는 함수
-{
-	/*--------------------------*/
-	// 1. 키 행렬 사이즈 입력받기
-	/*--------------------------*/
-
-	int* keyMatrix = NULL;
-	printf("키의 행의 크기를 입력하세요:");
-
-	scanf("%d", keyMatrix_sideSize);
-
-	printf("\n");
-
-	if (!(*keyMatrix_sideSize > 0))
-	{
-		goto make_keyMatrix_exit;
-	}
-
-	/*--------------------------*/
-	// 2. 키행렬 할당
-	/*--------------------------*/
-
-	keyMatrix = (int*)malloc((int)pow(*keyMatrix_sideSize, 2) * sizeof(int));
-
-	if (keyMatrix == NULL)
-	{
-		errNum = 1;
-		goto make_keyMatrix_exit;
-	}
-
-	deleteKey_flag = true; // 루프를 다 돌기전에 지울것!
-
-	/*--------------------------*/
-	// 3. 키행렬에 입력
-	/*--------------------------*/
-
-	keyElement_input(keyMatrix, *keyMatrix_sideSize);
-
-make_keyMatrix_exit:
-	return keyMatrix;
-}
-
-void keyElement_input(int* keyMatrix, int keyMatrix_sideSize) // key 행렬에 값을 써주는 함수
-{
-	bool isZero_flag = true;
-	int keyMatrix_size = keyMatrix_sideSize * keyMatrix_sideSize;
-
-	while (isZero_flag)
-	{
-		for (int i = 0; i < keyMatrix_size; i++)
-		{
-			printf("키를 입력하세요 [%d][%d] : ", i / keyMatrix_sideSize, i % keyMatrix_sideSize);
-			scanf("%d", &keyMatrix[i]);
-			// 류현수 구현
-		}
-
-		if ((detNum = cal_Determinant(keyMatrix, keyMatrix_sideSize)) == 0)
-		{
-			printf("행렬식이 0입니다! 다시입력하세요!\n");
-			isZero_flag = true;
-		}
-		else
-			isZero_flag = false;
-	}
-	
-	return;
-}
 
 int cal_Determinant(int* keyMatrix, int keyMatrix_sideSize) // key 행렬의 행렬식이 0인지를 검사하는 함수
 {
@@ -163,115 +95,66 @@ void copyIdx(int* destMatrix, int* srcMatrix, int srcStd_idx, int srcMatrix_side
 	}
 }
 
-void input_to_strArray(void)
-{
-	int padTime = strlen(strArray) - (maxIdx % strlen(strArray)); // keySize 배수에서 얼마만큼 차이인지를 저장하는 변수
-	// 류현수 구현
-	bool loopFlag = true;
-
-	do
-	{
-		/*--------------------------*/
-		// 1. strArray 초기화
-		/*--------------------------*/
-
-		memset(input_strArray, 0, STR_SIZE); // 배열 초기화
-
-		/*--------------------------*/
-		// 2. string 입력받기
-		/*--------------------------*/
-
-		printf("평문을 입력하세요 (qqq입력시 종료) : ");
-
-		fgets(input_strArray, STR_SIZE, stdin); //평문을 strArray배열에 문자열로 입력을 받는다. (499개의 문자 + null)
-
-		if (strcmp(input_strArray, "qqq") || strcmp(input_strArray, "QQQ")) // 종료조건 검사
-		{
-			errNum = 4; // 사용자가 직접종료
-			break;
-		}
-
-		/*--------------------------*/
-		// 3. 한자한자 검사 + 정수화 하는 반복문
-		/*--------------------------*/
-
-		for (int i = 0; i < strlen(input_strArray); i++) // 
-		{
-			if ('A' <= input_strArray[i] || input_strArray[i] <= 'Z')
-			{
-				numMatrix[i] = (int)input_strArray[i] - 'A';
-				loopFlag = false;
-				maxIdx++;
-			}
-			else if ('a' <= input_strArray[i] || input_strArray[i] <= 'z')
-			{
-				numMatrix[i] = (int)input_strArray[i] - ('a' - 'A');
-				loopFlag = false;
-				maxIdx++;
-			}
-			else
-			{
-				printf("invaild charater : %c(%d)\n", input_strArray[i], i);
-				printf("try input again\n");
-
-				maxIdx = 0;
-				loopFlag = true;
-				break;
-			}
-		}
-		if (maxIdx % strlen(strArray) != 0) //strArray가 key행렬의 행의 길이와 같지 않다면 시행
-		{
-			for (int i = 0; i < padTime; i++) //strArray가 key행렬의 행의 길이와 같지 않다면 맞을 때까지 시행
-			{
-				numArray[maxIdx + i] = '@'; // 추가되는 값은 27번째 문자의 값을 넣는다. (27번째 문자는 '@'에 대응한다.)
-			}
-		}
-	} while (loopFlag);
-
-	//이 다음에 패딩하는 것을 함수로 구현
-
-	return;
-}
-
-
-void mul_Matrix(int* keyMatrix, int keyMatrix_sideSize,char* strArray) // 둘의 행렬곱만 해주는 함수
-
+void mul_Matrix(int* leftMatrix, int leftMatrix_sideSize, int* rightMatrix, int rightMatrix_size, int* resultMatrix) // 둘의 행렬곱만 해주는 함수
+// 유연성을 위해 전역변수여도 파라미터로 받게끔 제작
+// leftMatrix : 키행렬
+// rightMatrix : 평문을 숫자화 한 행렬
+// rightMatrix_size : g_maxIdx
+// resultMatrix : ??
 {
 
 	int sum = 0;
-	int quotient = 0;
+	g_peddedSize = leftMatrix_sideSize - (rightMatrix_size % leftMatrix_sideSize);
+	int rightMatrix_maxCol = 0;
+	int resultMatrix_idx = 0;
 
 	/*------------------------*/
 	// 1. 문자패딩
 	/*------------------------*/
 	
 
+	if (g_peddedSize != 0) //strArray가 key행렬의 행의 길이의 배수가 아니라면 패딩시작
+	{
+		for (int i = 0; i < g_peddedSize; i++)
+		{
+			numMatrix[rightMatrix_size + i] = 26; // 추가되는 값은 27번째 문자의 값을 대입. (27번째 문자는 '@')
+		}
+	}
+
 	/*------------------------*/
 	// 2. 평문자르기 -> 몫구하기
 	/*------------------------*/
 
-	quotient = strlen(numArray) / keySize;
+
+	rightMatrix_maxCol = rightMatrix_size / leftMatrix_sideSize;
 
 	/*------------------------*/
 	// 3. 몫만큼 반복해서 행렬곱 -> 결과저장
 	/*------------------------*/
 
-	for (int i = 0; i < quotient; i++) // key행렬과 key의 행렬의 행 개수만큼의 평문 행렬
+
+	for (int leftRow = 0; leftRow < leftMatrix_sideSize; leftRow++)
 	{
-		for (int j = 0; j < keySize; j++) // 행의 인덱스
-
+		for (int rightCol = 0; rightCol < rightMatrix_maxCol; rightCol++)
 		{
-			for (int k = 0; k < keySize; k++) // 열의 인덱스
+			sum = 0;
 
+			for (int targetVector_idx = 0; targetVector_idx < leftMatrix_sideSize; targetVector_idx++) 
 			{
-				sum += keyArray[j * keySize + k] * numArray[i * keySize + k]; //keyArray와 strArray의 행렬곱을 시행한다.
-			}
+				// 벡터의 인덱스는 행렬위치에 따라 의미가 달라짐
+				// 좌행렬 : 열
+				// 우행렬 : 행
 
-			deliverArray[i * keySize + j] = sum; // 결과 행렬에 행렬 곱의 결과들을 넣는다.
+				sum += leftMatrix[leftRow * leftMatrix_sideSize + targetVector_idx] * rightMatrix[targetVector_idx * rightMatrix_maxCol + rightCol];
+			}
+			resultMatrix[resultMatrix_idx++] = sum;
 		}
 	}
 
-
-
-
+	if (resultMatrix_idx != rightMatrix_size)
+	{
+		printf("Error!! multiplying Matrix algorhithm doesnt work!!\n\n");
+		errNum = 6;
+	}
+>>>>>>> origin
 }

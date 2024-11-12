@@ -14,7 +14,7 @@ int find_modularInverse(void) // 역원찾기
 
 	while (1)
 	{
-		if (FINDING_MODULAR_INVERSE(detNum, ++num) == 1) // 최소 역원을 반환
+		if (FINDING_MODULAR_INVERSE(g_detNum, ++num) == 1) // 최소 역원을 반환
 			break;
 	}
 
