@@ -41,14 +41,15 @@ void transpoe_Matrix(int* Matrix, int matrix_sideSize)
 			desPOS = col * matrix_sideSize + row;
 
 			// srcPOS와 desPOS가 같다면 연산을 통해 값이 0이됨. 서로 달라야하만 함 (xor의 논리구조)
-			Matrix[srcPOS] = Matrix[srcPOS] ^ Matrix[desPOS]; // src = src ^ des
+			Matrix[srcPOS] = Matrix[srcPOS] ^ Matrix[desPOS]; // src = src ^ des 
 			Matrix[desPOS] = Matrix[srcPOS] ^ Matrix[desPOS]; // des = src = (src ^ des) ^ des
 			Matrix[srcPOS] = Matrix[srcPOS] ^ Matrix[desPOS]; // src = des = (src ^ des) ^ src(=desPOS)
 		}
 	}
 }
 
-void cal_inverseDeterminant(int* keyMatrix, int* result_InverseMatrix, int keyMatrix_sideSize) // 처음에는 전역변수, (int)sqrt(maxIdx+peddedNum) 대입
+void cal_inverseMaxtrix(int* keyMatrix, int* result_InverseMatrix, int keyMatrix_sideSize) // 처음에는 전역변수, 역행렬을 담을 배열, (int)sqrt(maxIdx+peddedNum) 대입 
+// 호출자에서 errNum을 확인하면 루프 break
 {
 	/*--------------------------------*/
 	// 1. 필요한 변수들 미리 선언 
@@ -94,6 +95,11 @@ void cal_inverseDeterminant(int* keyMatrix, int* result_InverseMatrix, int keyMa
 		signNum = i / keyMatrix_sideSize + i % keyMatrix_sideSize;
 
 		result_InverseMatrix[i] = (int)pow(-1, signNum) * cal_Determinant(subMatrixs[i], nextMatrix_sideSize); // 해당 소행렬식 구해서, 결과를 출력할 역행렬에 넣기
+	} 
+
+	if (errNum == 3) //행렬식에서 할당 실패 예외처리
+	{
+		goto cal_inverseDeterminant_exit2;
 	}
 
 	/*--------------------------------*/
