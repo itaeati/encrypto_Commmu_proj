@@ -26,10 +26,10 @@ void mul_Scalar(int* inverseMatrix, int keyMatrix_Size)
 	int modularInverse = find_modularInverse();
 
 	for (int i = 0; i < keyMatrix_Size; i++)
-		inverseMatrix[i] *= modularInverse;
+		inverseMatrix[i] *= modularInverse; 
 }
 
-void transpoe_Matrix(int* Matrix, int matrix_sideSize)
+void transpose_Matrix(int* Matrix, int matrix_sideSize)
 {
 	int srcPOS = 0;
 	int desPOS = 0;
@@ -67,7 +67,7 @@ void cal_inverseMaxtrix(int* keyMatrix, int* result_InverseMatrix, int keyMatrix
 	// 2. 크기만큼 동적할당 
 	/*--------------------------------*/
 
-	subMatrixs = (int**)malloc(keyMatrix_Size * sizeof(int*));
+	subMatrixs = (int**)malloc(keyMatrix_Size * sizeof(int));
 	if (subMatrixs == NULL)
 	{
 		errNum = 5;
@@ -82,9 +82,9 @@ void cal_inverseMaxtrix(int* keyMatrix, int* result_InverseMatrix, int keyMatrix
 
 	for (int i = 0; i < keyMatrix_Size; i++)
 	{
-		subMatrixs[i] = (int*)malloc(nextMatrix_Size * sizeof(int));
+		subMatrixs[i] = (int*)malloc(nextMatrix_Size * sizeof(int)); 
 
-		if (subMatrixs[i] == NULL)
+		if ( subMatrixs[i] == NULL)
 		{
 			errNum = 6;
 			goto cal_inverseDeterminant_exit2;
@@ -106,7 +106,7 @@ void cal_inverseMaxtrix(int* keyMatrix, int* result_InverseMatrix, int keyMatrix
 	// 4. 수반행렬화 + 역원 스칼라 연산
 	/*--------------------------------*/
 
-	transpoe_Matrix(result_InverseMatrix, keyMatrix_sideSize);
+	transpose_Matrix(result_InverseMatrix, keyMatrix_sideSize);
 	mul_Scalar(result_InverseMatrix, keyMatrix_sideSize);
 	
 	/*--------------------------------*/

@@ -99,7 +99,7 @@ void mul_Matrix(int* leftMatrix, int leftMatrix_sideSize, int* rightMatrix, int 
 // 유연성을 위해 전역변수여도 파라미터로 받게끔 제작
 // leftMatrix : 키행렬
 // rightMatrix : 평문을 숫자화 한 행렬
-// rightMatrix_size : g_maxIdx
+// rightMatrix_size : g_maxIdx  
 // resultMatrix : ??
 {
 
@@ -156,5 +156,5 @@ void mul_Matrix(int* leftMatrix, int leftMatrix_sideSize, int* rightMatrix, int 
 		printf("Error!! multiplying Matrix algorhithm doesnt work!!\n\n");
 		errNum = 6;
 	}
->>>>>>> origin
+
 }
