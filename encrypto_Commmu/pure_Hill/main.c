@@ -41,7 +41,9 @@ void main(void)
 		// 5. Á¤¸®
 		/*---------------------------*/
 
+
 		cleanUp_func();
+
 		
 		if (g_deleteKey_flag)
 			free(keyArr);

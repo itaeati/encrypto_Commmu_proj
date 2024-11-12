@@ -99,9 +99,10 @@ void mul_Matrix(int* leftMatrix, int leftMatrix_sideSize, int* rightMatrix, int 
 // 유연성을 위해 전역변수여도 파라미터로 받게끔 제작
 // leftMatrix : 키행렬
 // rightMatrix : 평문을 숫자화 한 행렬
-// rightMatrix_size : g_maxIdx
+// rightMatrix_size : g_maxIdx  
 // resultMatrix : ??
 {
+
 	int sum = 0;
 	g_peddedSize = leftMatrix_sideSize - (rightMatrix_size % leftMatrix_sideSize);
 	int rightMatrix_maxCol = 0;
@@ -110,6 +111,7 @@ void mul_Matrix(int* leftMatrix, int leftMatrix_sideSize, int* rightMatrix, int 
 	/*------------------------*/
 	// 1. 문자패딩
 	/*------------------------*/
+	
 
 	if (g_peddedSize != 0) //strArray가 key행렬의 행의 길이의 배수가 아니라면 패딩시작
 	{
@@ -123,11 +125,13 @@ void mul_Matrix(int* leftMatrix, int leftMatrix_sideSize, int* rightMatrix, int 
 	// 2. 평문자르기 -> 몫구하기
 	/*------------------------*/
 
+
 	rightMatrix_maxCol = rightMatrix_size / leftMatrix_sideSize;
 
 	/*------------------------*/
 	// 3. 몫만큼 반복해서 행렬곱 -> 결과저장
 	/*------------------------*/
+
 
 	for (int leftRow = 0; leftRow < leftMatrix_sideSize; leftRow++)
 	{
@@ -152,4 +156,5 @@ void mul_Matrix(int* leftMatrix, int leftMatrix_sideSize, int* rightMatrix, int 
 		printf("Error!! multiplying Matrix algorhithm doesnt work!!\n\n");
 		errNum = 6;
 	}
+
 }
