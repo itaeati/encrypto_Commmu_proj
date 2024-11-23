@@ -1,7 +1,7 @@
 #include "Matrix.h"
 
 char input_strArray[STR_SIZE];		// 평문을 담는 배열
-int deliverMatrix[STR_SIZE];	// 평문 * key행렬 결과를 담는 배열
+int deliverMatrix[STR_SIZE];		// 평문 * key행렬 결과를 담는 배열
 int g_maxIdx = 0;					// 평문의 크기
 int numMatrix[STR_SIZE];			// 평문을 대응하는 숫자로 변환한 값을 저장하는 배열
 int g_detNum = 1;					// 행렬식값
@@ -10,9 +10,9 @@ int g_peddedSize = 0;				// 패딩사이즈
 bool g_deleteKey_flag = false;	// 혹시모르는 검사
 int errNum = 0;					// 에러체크
 
-void copyIdx(int* destMatrix, int* srcMatrix, int srcStd_idx, int srcMatrix_sideSize);
-int cal_Determinant(int* keyMatrix, int keyMatrix_sideSize);
-void keyElement_input(int* keyMatrix, int keyMatrix_sideSize);
+void copyIdx(int* destMatrix, int* srcMatrix, int srcStd_idx, int srcMatrix_sideSize); // 행렬식에서 이를 호출하는데, 선언이 없어서 모름 -> 링커오류발생
+
+void matrixMoudulation(int* targetMatrix);
 
 int cal_Determinant(int* keyMatrix, int keyMatrix_sideSize) // key 행렬의 행렬식이 0인지를 검사하는 함수
 {
@@ -33,7 +33,12 @@ int cal_Determinant(int* keyMatrix, int keyMatrix_sideSize) // key 행렬의 행렬식
 
 	memset(subMatrixs, 0, keyMatrix_Size);
 
-	if (keyMatrix_sideSize == 2)
+	if (keyMatrix_sideSize == 1)
+	{
+		result = *keyMatrix;
+	}
+
+	else if (keyMatrix_sideSize == 2)
 	{
 		result = keyMatrix[0] * keyMatrix[3] - keyMatrix[1] * keyMatrix[2]; // 2X2 행렬식 계산하자마자 반환
 	}
@@ -100,27 +105,17 @@ void mul_Matrix(int* leftMatrix, int leftMatrix_sideSize, int* rightMatrix, int 
 // leftMatrix : 키행렬
 // rightMatrix : 평문을 숫자화 한 행렬
 // rightMatrix_size : g_maxIdx  
-// resultMatrix : ??
+// resultMatrix : delivery
 {
 
 	int sum = 0;
-	g_peddedSize = leftMatrix_sideSize - (rightMatrix_size % leftMatrix_sideSize);
 	int rightMatrix_maxCol = 0;
 	int resultMatrix_idx = 0;
 
 	/*------------------------*/
 	// 1. 문자패딩
 	/*------------------------*/
-	
-
-	if (g_peddedSize != 0) //strArray가 key행렬의 행의 길이의 배수가 아니라면 패딩시작
-	{
-		for (int i = 0; i < g_peddedSize; i++)
-		{
-			numMatrix[rightMatrix_size + i] = 26; // 추가되는 값은 27번째 문자의 값을 대입. (27번째 문자는 '@')
-		}
-	}
-
+	int temp = 0;
 	/*------------------------*/
 	// 2. 평문자르기 -> 몫구하기
 	/*------------------------*/
@@ -131,7 +126,7 @@ void mul_Matrix(int* leftMatrix, int leftMatrix_sideSize, int* rightMatrix, int 
 	/*------------------------*/
 	// 3. 몫만큼 반복해서 행렬곱 -> 결과저장
 	/*------------------------*/
-
+#if (0)
 
 	for (int leftRow = 0; leftRow < leftMatrix_sideSize; leftRow++)
 	{
@@ -150,7 +145,27 @@ void mul_Matrix(int* leftMatrix, int leftMatrix_sideSize, int* rightMatrix, int 
 			resultMatrix[resultMatrix_idx++] = sum;
 		}
 	}
+#else
+	for (int leftRow = 0; leftRow < rightMatrix_maxCol; leftRow++)
+	{
+		for (int rightCol = 0; rightCol < leftMatrix_sideSize; rightCol++)
+		{
+			sum = 0;
 
+			for (int targetVector_idx = 0; targetVector_idx < leftMatrix_sideSize; targetVector_idx++)
+			{
+				// 벡터의 인덱스는 행렬위치에 따라 의미가 달라짐
+				// 좌행렬 : 열
+				// 우행렬 : 행
+
+				temp = leftMatrix[rightCol * leftMatrix_sideSize + targetVector_idx] * rightMatrix[leftRow * leftMatrix_sideSize + targetVector_idx];
+
+				sum += temp;
+			}
+			resultMatrix[resultMatrix_idx++] = sum;
+		}
+	}
+#endif
 	if (resultMatrix_idx != rightMatrix_size)
 	{
 		printf("Error!! multiplying Matrix algorhithm doesnt work!!\n\n");
