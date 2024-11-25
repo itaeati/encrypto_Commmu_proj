@@ -12,8 +12,6 @@ int errNum = 0;					// 에러체크
 
 void copyIdx(int* destMatrix, int* srcMatrix, int srcStd_idx, int srcMatrix_sideSize); // 행렬식에서 이를 호출하는데, 선언이 없어서 모름 -> 링커오류발생
 
-void matrixMoudulation(int* targetMatrix);
-
 int cal_Determinant(int* keyMatrix, int keyMatrix_sideSize) // key 행렬의 행렬식이 0인지를 검사하는 함수
 {
 	// 0. 배열의 한변크기의 배열을 담을 포인터 배열 선언
@@ -107,27 +105,30 @@ void mul_Matrix(int* leftMatrix, int leftMatrix_sideSize, int* rightMatrix, int 
 // rightMatrix_size : g_maxIdx  
 // resultMatrix : delivery
 {
+	if (errNum)
+		return;
+
 
 	int sum = 0;
 	int rightMatrix_maxCol = 0;
 	int resultMatrix_idx = 0;
+	int temp = 0;
 
 	/*------------------------*/
 	// 1. 문자패딩
 	/*------------------------*/
-	int temp = 0;
+	
 	/*------------------------*/
 	// 2. 평문자르기 -> 몫구하기
 	/*------------------------*/
-
 
 	rightMatrix_maxCol = rightMatrix_size / leftMatrix_sideSize;
 
 	/*------------------------*/
 	// 3. 몫만큼 반복해서 행렬곱 -> 결과저장
 	/*------------------------*/
-#if (0)
-
+#ifndef DEBUG
+	
 	for (int leftRow = 0; leftRow < leftMatrix_sideSize; leftRow++)
 	{
 		for (int rightCol = 0; rightCol < rightMatrix_maxCol; rightCol++)
@@ -146,6 +147,8 @@ void mul_Matrix(int* leftMatrix, int leftMatrix_sideSize, int* rightMatrix, int 
 		}
 	}
 #else
+	
+
 	for (int leftRow = 0; leftRow < rightMatrix_maxCol; leftRow++)
 	{
 		for (int rightCol = 0; rightCol < leftMatrix_sideSize; rightCol++)
@@ -166,6 +169,12 @@ void mul_Matrix(int* leftMatrix, int leftMatrix_sideSize, int* rightMatrix, int 
 		}
 	}
 #endif
+
+#ifdef DEBUG
+	printf("after Multiplying matrix..\n");
+	printMatrix(resultMatrix, leftMatrix_sideSize, rightMatrix_maxCol);
+#endif
+
 	if (resultMatrix_idx != rightMatrix_size)
 	{
 		printf("Error!! multiplying Matrix algorhithm doesnt work!!\n\n");

@@ -4,6 +4,7 @@
 #include "globalVar.h"
 
 void keyElement_input(int* keyMatrix, int keyMatrix_sideSize);
+int findCoprime(int leftNum, int rightNum);
 void clearBuffer();
 void deleteEnterkey();
 
@@ -14,6 +15,7 @@ void cleanUp_func(void)
 	g_peddedSize = 0;
 	g_deleteKey_flag = false;
 
+#ifdef DEBUG
 	memset(input_strArray, 0, STR_SIZE * sizeof(char));
 	printf("input_strArray reset\t");
 	memset(result_strArray, 0, STR_SIZE * sizeof(char));
@@ -22,6 +24,14 @@ void cleanUp_func(void)
 	printf("deliverMatrix reset\t");
 	memset(numMatrix, 0, STR_SIZE * sizeof(int));
 	printf("numMatrix reset\t");
+#else
+	memset(input_strArray, 0, STR_SIZE * sizeof(char));
+	memset(result_strArray, 0, STR_SIZE * sizeof(char));
+	memset(deliverMatrix, 0, STR_SIZE * sizeof(int));
+	memset(numMatrix, 0, STR_SIZE * sizeof(int));
+#endif // DEBUG
+
+	
 }
 
 int* make_keyMatrix(int* keyMatrix_sideSize) // key 크기를 입력받고, key 행렬을 만드는 함수
@@ -72,9 +82,12 @@ void keyElement_input(int* keyMatrix, int keyMatrix_sideSize) // key 행렬에 값을
 {
 	bool isZero_flag = true;
 	int keyMatrix_size = keyMatrix_sideSize * keyMatrix_sideSize;
+	int GCD = 1; // 최대공약수 (정상적으론 서로소가 되어야 하기에 1이될것)
 
 	while (isZero_flag)
 	{
+		GCD = 1;
+
 		for (int i = 0; i < keyMatrix_size; i++)
 		{
 			printf("키를 입력하세요 [%d][%d] : ", i / keyMatrix_sideSize, i % keyMatrix_sideSize);
@@ -88,7 +101,23 @@ void keyElement_input(int* keyMatrix, int keyMatrix_sideSize) // key 행렬에 값을
 			isZero_flag = true;
 		}
 		else
-			isZero_flag = false;
+		{
+			GCD = findCoprime(abs(g_detNum), ALPABET_SIZE); 
+			// 행렬식값은 음수가 나올수도 있기에, 최소공약수가 제대로 안나올 수도 있음 (ex : 0) -> 본질은 절대값으로 확인
+			if (GCD != 1)// 알파벳크기와 행렬식값이 서로소인지 확인
+			{
+				printf("Your keyMatrix determinant_Num(%d) is not coprime with ALPABET_SIZE(%d)\n", g_detNum, ALPABET_SIZE);
+				printf("The Greatest_Common_Divisor between detNum and ALPABET_SIZE = [%d]\n", GCD);
+				printf("Please restart inputing keyMatrix process!!\n\n");
+				isZero_flag = true;
+			}
+			else
+			{
+				printf("The Greatest_Common_Divisor between detNum and ALPABET_SIZE = [% d]\n", GCD);
+				printf("You can use your KeyMatrix!!\n");
+				isZero_flag = false;
+			}
+		}
 	}
 	clearBuffer();
 	return;
@@ -156,15 +185,23 @@ void input_to_strArray(void)
 
 void matrixMoudulation(int* targetMatrix, int matrixSize)
 {
+	if (errNum)
+		return;
 
 	for (int i = 0; i < matrixSize; i++)
 	{
 		targetMatrix[i] = (targetMatrix[i] % ALPABET_SIZE + ALPABET_SIZE) % ALPABET_SIZE; //음수일 경우를 대비 모듈러 연산 후 27 더하고 다시 연산
-
-		printf("%c ", (char)targetMatrix[i] + 'A');
 	}
 
-	
+#if defined(DEBUG)
+
+	printf("\nYour Text has been modulated by (Hill cipher)\n");
+	for (int i = 0; i < matrixSize; i++)
+	{
+		printf("%c ", (char)targetMatrix[i] + 'A');
+	}
+	printf("\n");
+#endif
 }
 
 void peddingMatrix(int* numMatrix, int leftMatrix_sideSize, int rightMatrix_size)
@@ -185,13 +222,11 @@ void peddingMatrix(int* numMatrix, int leftMatrix_sideSize, int rightMatrix_size
 
 void numtoString(int* targetMatrix, char* result_strArray)
 {
-	for (int i = 0; i < g_maxIdx + g_peddedSize; i++)
-	{
-		if (targetMatrix[i] == 26)  // 26일 경우 '@'를 출력한다.
-		{
-			result_strArray[i] = '@';
-		}
+	if (errNum)
+		return;
 
+	for (int i = 0; i < g_maxIdx ; i++)
+	{
 		result_strArray[i] = targetMatrix[i] + 'A'; // 26이 아닐 경우 'A'만큼 더한다.
 	}
 	printf("decoding result = [%s]", result_strArray);
@@ -208,3 +243,51 @@ void deleteEnterkey()
 {
 	input_strArray[strlen(input_strArray) - 1] = NULL;
 }
+
+int findCoprime(int leftNum, int rightNum)// 유클리드 알고리즘으로 서로소인지 확인
+{
+	int cofactor = 0, gcd = 0;
+
+	for (cofactor = 1; cofactor <= leftNum && cofactor <= rightNum; cofactor++)
+	{
+		if (leftNum % cofactor == 0 && rightNum % cofactor == 0)
+			gcd = cofactor;
+	}
+
+	return gcd;
+}
+
+#ifdef DEBUG
+
+void printMatrix(int * Matrix, int Matrix_maxRow, int Matrix_maxCol)
+{
+	for (int i = 0; i < Matrix_maxRow; i++)
+	{
+		for (int j = 0; j < Matrix_maxCol; j++)
+		{
+			printf("%d\t", Matrix[i * Matrix_maxRow + j]);
+		}
+		printf("\n");
+	}
+	printf("\n");
+}
+
+void printAddr(void* ptr, char* Name) // 변수가 가리키는 주소값을 출력
+{
+	printf("[%s]'s pointing Address : %X",Name,ptr); // 접근이 아니라서 void * 로 받아도 상관없음
+}
+
+void printStatus(void)
+{
+	printf("stringLength : %d\n", g_maxIdx); // 전역변수의 상태를 반환
+	printf("peddedLength : %d\n", g_peddedSize);
+	printf("determinantValue : %d\n\n", g_detNum);
+}
+
+void printLoopNum(void)
+{
+	static int loopNum = 0;
+
+	printf("\nNum of loop : %d\n", loopNum++);
+}
+#endif 
