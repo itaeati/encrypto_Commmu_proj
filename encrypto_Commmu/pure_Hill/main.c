@@ -1,4 +1,4 @@
-#include "code.h" // 명시를 위해서
+#include "code.h" // Declare HEADER
 
 void main(void)
 {
@@ -9,7 +9,7 @@ void main(void)
 	while (!errNum)
 	{
 		/*---------------------------*/
-		// 1. key 행렬 만들기
+		// 1. Make key Array
 		/*---------------------------*/
 		
 		keyMatrix = make_keyMatrix(&key_size);
@@ -19,19 +19,19 @@ void main(void)
 		}
 		
 		/*---------------------------*/
-		// 2. 평문입력
+		// 2. input plaintext
 		/*---------------------------*/
 
 		input_to_strArray();
 
 		/*---------------------------*/
-		// 3. 암호화과정
+		// 3. encoding process
 		/*---------------------------*/
 
 		encodingFunc(key_size, keyMatrix);
 
 		/*---------------------------*/
-		// 4. 복호화과정
+		// 4. decoding process
 		/*---------------------------*/
 		
 		decodingFunc(key_size, deliverMatrix, keyMatrix);
@@ -40,8 +40,9 @@ void main(void)
 		_getch();
 
 
-		system("cls"); // 다 완성했을 때
-		printf("당신의 평문은 [%s] 입니다!\n",result_strArray);
+		system("cls"); // if done, clear cmd window
+
+		printf("your plaintext is [%s]\n",result_strArray);
 
 		/*---------------------------*/
 		// 5. 정리
@@ -60,7 +61,7 @@ void main(void)
 	if ((errNum == 4) || !(errNum == 0) )
 		printf("errCode : %d\n", errNum);
 	
-	printf("엔터를 입력하세요!");
+	printf("input Enter!");
 	do {} while (getchar() != '\n');
 	
 	return;

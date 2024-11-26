@@ -2,11 +2,11 @@
 
 void encodingFunc(int keyMatrix_sideSize, int* keyMatrix)
 {
-	peddingMatrix(numMatrix, keyMatrix_sideSize, g_maxIdx);
+	paddingMatrix(numMatrix, keyMatrix_sideSize, g_maxIdx);
 
 	mul_Matrix(keyMatrix, keyMatrix_sideSize, numMatrix, g_maxIdx, deliverMatrix);
 
-	matrixMoudulation(deliverMatrix, g_maxIdx + g_peddedSize);
+	matrixMoudulation(deliverMatrix, g_maxIdx + g_paddingSize);
 
 }
 
@@ -27,11 +27,11 @@ void decodingFunc(int keyMatrix_sideSize, int* deliverMatrix, int* keyMatrix)
 
 	cal_inverseMaxtrix(keyMatrix, result_InverseMatrix, keyMatrix_sideSize);
 
-	matrixMoudulation(result_InverseMatrix, keyMatrix_sideSize);
+	matrixMoudulation(result_InverseMatrix, keyMatrix_sideSize * keyMatrix_sideSize);
 
-	mul_Matrix(result_InverseMatrix, keyMatrix_sideSize, deliverMatrix, g_maxIdx + g_peddedSize, numMatrix);
+	mul_Matrix(result_InverseMatrix, keyMatrix_sideSize, deliverMatrix, g_maxIdx + g_paddingSize, numMatrix);
 
-	matrixMoudulation(numMatrix, g_maxIdx + g_peddedSize);
+	matrixMoudulation(numMatrix, g_maxIdx + g_paddingSize);
 
 	numtoString(numMatrix, result_strArray);
 

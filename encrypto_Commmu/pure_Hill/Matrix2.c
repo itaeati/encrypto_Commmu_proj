@@ -6,16 +6,16 @@
 int cal_Determinant(int* keyMatrix, int keyMatrix_sideSize);
 void copyIdx(int* destMatrix, int* srcMatrix, int srcStd_idx, int srcMatrix_sideSize);
 
-char result_strArray[STR_SIZE];	// 복호화 평문을 담는 배열
+char result_strArray[STR_SIZE];	// array to hold the decrypted plaintext
 
 
-int find_modularInverse(void) // 역원찾기   (문제 있음)
+int find_modularInverse(void) // find inverse element  (문제 있음)
 {
-	int num = 0; // 어차피 그냥 되는거면 1곱해도 모듈러연산이 됨.
+	int num = 0; // If it works anyway, you can perform modular arithmetic even if you multiply by 1.
 
 	while (1)
 	{
-		if (FINDING_MODULAR_INVERSE(g_detNum, ++num) == 1) // 최소 역원을 반환
+		if (FINDING_MODULAR_INVERSE(g_detNum, ++num) == 1) // return the minimum inverse element.
 			break;
 	}
 
@@ -34,14 +34,14 @@ void transpose_Matrix(int* Matrix, int matrix_sideSize)
 {
 	int srcPOS = 0;
 	int desPOS = 0;
-	for (int row = 0; row < matrix_sideSize; row++) // 행렬의 대각선을 기준으로만 연산하면 됨
+	for (int row = 0; row < matrix_sideSize; row++) // perform operations based only on the diagonal of the matrix.
 	{
 		for (int col = row + 1; col < matrix_sideSize; col++)
 		{
 			srcPOS = row * matrix_sideSize + col;
 			desPOS = col * matrix_sideSize + row;
 
-			// srcPOS와 desPOS가 같다면 연산을 통해 값이 0이됨. 서로 달라야하만 함 (xor의 논리구조)
+			// If srcPOS and desPOS are the same, the operation will result in a value of 0. They must be different (xor's logical structure)
 			Matrix[srcPOS] = Matrix[srcPOS] ^ Matrix[desPOS]; // src = src ^ des 
 			Matrix[desPOS] = Matrix[srcPOS] ^ Matrix[desPOS]; // des = src = (src ^ des) ^ des
 			Matrix[srcPOS] = Matrix[srcPOS] ^ Matrix[desPOS]; // src = des = (src ^ des) ^ src(=desPOS)
