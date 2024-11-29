@@ -10,4 +10,6 @@
 #include <math.h>
 
 #define STR_SIZE 500
-#define ALPABET_SIZE 26 // alphabet count
+#define ALPABET_SIZE 26 // 기존 알파벳
+
+#define DEBUG
