@@ -235,7 +235,7 @@ void numtoString(int* targetMatrix, char* result_strArray)
 void clearBuffer()
 {
 	
-	while (getchar() != '\n' && getchar() != EOF){}
+	while (getchar() != '\n' && getchar() != EOF) {}
 
 }
 
