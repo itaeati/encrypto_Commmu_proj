@@ -6,9 +6,8 @@ int g_maxIdx = 0;					// 평문의 크기
 int numMatrix[STR_SIZE];			// 평문을 대응하는 숫자로 변환한 값을 저장하는 배열
 int g_detNum = 1;					// 행렬식값
 int g_peddedSize = 0;				// 패딩사이즈
-
-bool g_deleteKey_flag = false;	// 혹시모르는 검사
-int errNum = 0;					// 에러체크
+bool g_deleteKey_flag = false;	    // 혹시모르는 검사
+int errNum = 0;					    // 에러체크
 
 void copyIdx(int* destMatrix, int* srcMatrix, int srcStd_idx, int srcMatrix_sideSize); // 행렬식에서 이를 호출하는데, 선언이 없어서 모름 -> 링커오류발생
 

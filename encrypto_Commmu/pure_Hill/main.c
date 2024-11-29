@@ -76,7 +76,7 @@ void main(void)
 
 	}
 
-	if ((errNum == 4) || !(errNum == 0) )
+	if ((errNum == 4) || !(errNum == 0))
 		printf("errCode : %d\n", errNum);
 	
 	printf("Press Enter!");

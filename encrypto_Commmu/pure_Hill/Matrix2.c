@@ -123,6 +123,7 @@ void cal_inverseMaxtrix(int* keyMatrix, int* result_InverseMatrix, int keyMatrix
 		signNum = i / keyMatrix_sideSize + i % keyMatrix_sideSize;
 
 		temp1 = (int)pow(-1, signNum);
+
 		temp2 = cal_Determinant(subMatrixs[i], nextMatrix_sideSize); // 해당 소행렬식 구해서, 결과를 출력할 역행렬에 넣기
 
 		result_InverseMatrix[i] = temp1 * temp2;

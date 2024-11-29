@@ -37,7 +37,6 @@ void decodingFunc(int keyMatrix_sideSize, int* deliverMatrix, int* keyMatrix)
 
 	numtoString(numMatrix, result_strArray);
 
-
 exit_decodingFunc:
 	free(result_InverseMatrix);
 }
