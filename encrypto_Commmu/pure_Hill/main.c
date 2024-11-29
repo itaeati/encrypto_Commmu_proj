@@ -54,7 +54,7 @@ void main(void)
 		system("cls"); // 다 완성했을 때
 		if (!errNum)
 		{
-			printf("당신의 평문은 [%s] 입니다!\n", result_strArray);
+			printf("Your plaintext is [%s]!\n", result_strArray);
 
 #ifdef DEBUG
 			printf("after Decode..\n");
@@ -79,7 +79,7 @@ void main(void)
 	if ((errNum == 4) || !(errNum == 0) )
 		printf("errCode : %d\n", errNum);
 	
-	printf("엔터를 입력하세요!");
+	printf("Press Enter!");
 	do {} while (getchar() != '\n');
 	
 	return;
