@@ -1,4 +1,5 @@
 #pragma once
+#include "Librarys.h"
 
 extern bool g_deleteKey_flag;
 extern int g_maxIdx;
@@ -10,6 +11,7 @@ extern char result_strArray[STR_SIZE];
 extern int numMatrix[STR_SIZE];
 extern int deliverMatrix[STR_SIZE];
 
+
 extern int errNum;
 
 /*----------------------------
@@ -20,4 +22,6 @@ extern int errNum;
 * 4 : 사용자가 직접 종료
 * 5 : 역행렬에서 배열 할당실패
 * 6 : 행렬곱이 제대로 이루어지지 않음
+* 7 : 역행렬 할당 실패
+* 8 : 모듈러역원 계산 불가능
 ------------------------------*/

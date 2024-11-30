@@ -1,31 +1,58 @@
 #include "Matrix.h"
 #include "globalVar.h"
 
-#define FINDING_MODULAR_INVERSE(dN, n) (dN*n)%ALPABET_SIZE
-
 int cal_Determinant(int* keyMatrix, int keyMatrix_sideSize);
 void copyIdx(int* destMatrix, int* srcMatrix, int srcStd_idx, int srcMatrix_sideSize);
 
-char result_strArray[STR_SIZE];		// 복호화 평문을 담는 배열
+char result_strArray[STR_SIZE];	// 복호화 평문을 담는 배열
 
-int find_modularInverse(void) // 역원찾기
+inline int FINDING_MODULAR_INVERSE(int detNum, int moduloNum) 
+{
+	int temp = (detNum * moduloNum) % ALPABET_SIZE; // 기본 연산
+
+	if (temp < 0) 
+		temp += ALPABET_SIZE;            
+	// 역원은 26진수라고 가정해보자, 음수라면 보수처리가 되어있을것. -> 왜냐하면 나머지연산이니까 나머지만 확인하면됨
+	// 그렇기 때문에 역원이 -25라면, 보수이기때문에 +26을 해주어야함. -> +1 (원형 wrapping 처리)
+	// 일단 모듈러 값이 1이 되면 완성임
+
+	return temp;
+}
+
+int find_modularInverse(void) // 역원찾기   (문제 있음)
 {
 	int num = 0; // 어차피 그냥 되는거면 1곱해도 모듈러연산이 됨.
 
 	while (1)
 	{
-		if (FINDING_MODULAR_INVERSE(g_detNum, ++num) == 1) // 최소 역원을 반환
+		if (FINDING_MODULAR_INVERSE(g_detNum, ++num) == 1) // 최소 역원을 반환 (음수에서 래핑 처리 필요...)
 			break;
+		else if (num == sqrt(INT_MAX)) // 찾을 수 없음
+		{
+			errNum = 8;
+			num = 0;
+			break;
+		}
 	}
+#if defined(DEBUG)
+	printf("inverseModulation_number : %d\n", num);
+#endif
 
 	return num;
 }
 
-void mul_Scalar(int* inverseMatrix, int keyMatrix_Size)
+void mul_Scalar(int* inverseMatrix, int keyMatrix_sideSize)
 {
 	int modularInverse = find_modularInverse();
 
-	for (int i = 0; i < keyMatrix_Size; i++)
+	if (modularInverse == 0)
+	{
+		printf("your KeyMatrix is not disjoint!!!\n"); // 키행렬식이 26과 서로소여야만 모듈러 역원을 계산가능
+		return 0;
+	}
+		
+
+	for (int i = 0; i < keyMatrix_sideSize* keyMatrix_sideSize; i++)
 		inverseMatrix[i] *= modularInverse; 
 }
 
@@ -62,19 +89,20 @@ void cal_inverseMaxtrix(int* keyMatrix, int* result_InverseMatrix, int keyMatrix
 	int nextMatrix_Size = (int)pow(nextMatrix_sideSize, 2);
 	int signNum = 0;
 	
+	int temp1 = 0, temp2 = 0; // 디버거용
 
 	/*--------------------------------*/
 	// 2. 크기만큼 동적할당 
 	/*--------------------------------*/
 
-	subMatrixs = (int**)malloc(keyMatrix_Size * sizeof(int));
+	subMatrixs = (int**)malloc(keyMatrix_Size * sizeof(int*));
 	if (subMatrixs == NULL)
 	{
 		errNum = 5;
 		goto cal_inverseDeterminant_exit1;
 	}
 
-	memset(subMatrixs, NULL, keyMatrix_Size);	
+	memset(subMatrixs, 0, keyMatrix_Size * sizeof(int*));
 
 	/*--------------------------------*/
 	// 3. 여인자 행렬화
@@ -94,7 +122,10 @@ void cal_inverseMaxtrix(int* keyMatrix, int* result_InverseMatrix, int keyMatrix
 		
 		signNum = i / keyMatrix_sideSize + i % keyMatrix_sideSize;
 
-		result_InverseMatrix[i] = (int)pow(-1, signNum) * cal_Determinant(subMatrixs[i], nextMatrix_sideSize); // 해당 소행렬식 구해서, 결과를 출력할 역행렬에 넣기
+		temp1 = (int)pow(-1, signNum);
+		temp2 = cal_Determinant(subMatrixs[i], nextMatrix_sideSize); // 해당 소행렬식 구해서, 결과를 출력할 역행렬에 넣기
+
+		result_InverseMatrix[i] = temp1 * temp2;
 	} 
 
 	if (errNum == 3) //행렬식에서 할당 실패 예외처리
@@ -102,12 +133,28 @@ void cal_inverseMaxtrix(int* keyMatrix, int* result_InverseMatrix, int keyMatrix
 		goto cal_inverseDeterminant_exit2;
 	}
 
+#ifdef DEBUG
+	printf("after just inversing matrix..\n");
+	printMatrix(result_InverseMatrix, keyMatrix_sideSize, keyMatrix_sideSize);
+#endif
+
 	/*--------------------------------*/
 	// 4. 수반행렬화 + 역원 스칼라 연산
 	/*--------------------------------*/
 
-	transpose_Matrix(result_InverseMatrix, keyMatrix_sideSize);
+
+	transpose_Matrix(result_InverseMatrix, keyMatrix_sideSize); 
+#ifdef DEBUG
+	printf("after transposing..\n");
+	printMatrix(result_InverseMatrix, keyMatrix_sideSize, keyMatrix_sideSize);
+#endif
+
+
 	mul_Scalar(result_InverseMatrix, keyMatrix_sideSize);
+#ifdef DEBUG
+	printf("after multplying scalar..\n");
+	printMatrix(result_InverseMatrix, keyMatrix_sideSize, keyMatrix_sideSize);
+#endif
 	
 	/*--------------------------------*/
 	// 5.. 정리

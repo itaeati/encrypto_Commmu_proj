@@ -1,3 +1,2 @@
 ﻿  main.c
-C:\encrypto_Commmu_proj_coWork\encrypto_Commmu_proj\encrypto_Commmu\pure_Hill\main.c(59,15): warning C4013: 'getch'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
   pure_Hill.vcxproj -> C:\encrypto_Commmu_proj_coWork\encrypto_Commmu_proj\encrypto_Commmu\x64\Debug\pure_Hill.exe
