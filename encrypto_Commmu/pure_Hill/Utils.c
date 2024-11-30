@@ -41,7 +41,7 @@ int* make_keyMatrix(int* keyMatrix_sideSize) // key 크기를 입력받고, key 행렬을 
 	/*--------------------------*/
 
 	int* keyMatrix = NULL;
-	printf("키의 행의 크기를 입력하세요:");
+	printf("Please enter the number of rows for the key:");
 
 	scanf("%d", keyMatrix_sideSize);
 	
@@ -90,14 +90,14 @@ void keyElement_input(int* keyMatrix, int keyMatrix_sideSize) // key 행렬에 값을
 
 		for (int i = 0; i < keyMatrix_size; i++)
 		{
-			printf("키를 입력하세요 [%d][%d] : ", i / keyMatrix_sideSize, i % keyMatrix_sideSize);
+			printf("Please enter the key [%d][%d] : ", i / keyMatrix_sideSize, i % keyMatrix_sideSize);
 			scanf("%d", &keyMatrix[i]);
 			// 류현수 구현
 		}
 
 		if ((g_detNum = cal_Determinant(keyMatrix, keyMatrix_sideSize)) == 0)
 		{
-			printf("행렬식이 0입니다! 다시입력하세요!\n");
+			printf("The determinant is zero! Please enter again!\n");
 			isZero_flag = true;
 		}
 		else
@@ -140,7 +140,7 @@ void input_to_strArray(void)
 		// 2. string 입력받기
 		/*--------------------------*/
 
-		printf("평문을 입력하세요 (qqq입력시 종료) : ");
+		printf("Please enter the plaintext (type 'qqq' to exit) : ");
 
 		fgets(input_strArray,STR_SIZE, stdin); //평문을 strArray배열에 문자열로 입력을 받는다. (499개의 문자 + null) (fgets를 사용하려면 버퍼를 비워야한다.)
 
